@@ -1,6 +1,5 @@
-package guru.springframework.spring5webapp.model;
+package ar.tangogeek.spring5webapp.model;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
