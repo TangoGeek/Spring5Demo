@@ -1,18 +1,33 @@
 package ar.tangogeek.spring5webapp.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by jt on 5/16/17.
- */
-
+@Entity
 public class Author {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    private Long id;
+        Author author = (Author) o;
+
+        return id.equals(author.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Long id; // only bc we are persisting in relational
     private String firstName;
     private String lastName;
 
+    @ManyToMany (mappedBy = "authors")
     private Set<Book> books  = new HashSet<>();
 
     public Author() {
@@ -59,5 +74,15 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
     }
 }
