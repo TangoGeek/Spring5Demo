@@ -16,11 +16,6 @@ public class Author {
         return id.equals(author.id);
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id; // only bc we are persisting in relational
